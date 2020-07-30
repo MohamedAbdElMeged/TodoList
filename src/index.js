@@ -10,3 +10,5 @@ ReactDOM.render( <
     </React.StrictMode>,
     document.getElementById('root')
 );
+
+ReactDOM.render("Todo List",document.getElementById('PageTitle'));

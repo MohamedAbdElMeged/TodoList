@@ -32,17 +32,23 @@ class App extends React.Component {
 
 //add Item
 addItem = (title) => {
-  const newTodo = { 
-    id: this.state.todos.length + 1,
+  // const newTodo = { 
+  //   id: this.state.todos.length + 1,
+  //   title: title,
+  //   completed: false
+  // }
+  Axios.post('https://jsonplaceholder.typicode.com/todos',{
     title: title,
     completed: false
-  }
-  this.setState({todos: [...this.state.todos, newTodo]});
+  }).then(res => this.setState({todos: [...this.state.todos, res.data]}));
+
 }
 
 //delete Item
 deleteItem = (id) =>{
-  this.setState({todos: [...this.state.todos.filter(todo => todo.id !== id)]});
+  Axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`, {
+    method: 'DELETE'
+  }).then(res => this.setState({todos: [...this.state.todos.filter(todo => todo.id !== id)]}));
 }
     render() {
         return ( 
