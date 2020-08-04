@@ -11,13 +11,19 @@ export class TodoItem extends Component {
         }
     }
 
+    formatChecked = () => {
+        const {id} = this.props.todo;
+        return this.props.todo.completed ? <input type="checkbox"  onChange={this.props.markComplete.bind(this , id)} checked/>  : <input type="checkbox"  onChange={this.props.markComplete.bind(this , id)}/>
+    }
+
 
     render() {
         const {id , title} = this.props.todo;
         return (
             <div style={this.getStyle()}>
               <p>
-                <input type="checkbox" onChange={this.props.markComplete.bind(this , id)}/>{' '}
+                  {this.formatChecked()}
+                {/* <input type="checkbox"  onChange={this.props.markComplete.bind(this , id)}/>{' '} */}
                 { title }
                 <button onClick={ this.props.deleteItem.bind(this , id) } style={btnStyle} ></button>
               </p>
@@ -25,6 +31,8 @@ export class TodoItem extends Component {
         )
     }
 }
+
+
 
 TodoItem.propTypes = {
     todo: PropTypes.object.isRequired 
