@@ -7,11 +7,13 @@ import AddItem from './components/AddItem';
 import About from './components/pages/About';
 import Axios from 'axios';
 
+
 class App extends React.Component {
   state = {
       todos: []
   }
 
+  
 
   componentDidMount (){
     Axios.get('https://jsonplaceholder.typicode.com/todos?_limit=10')
